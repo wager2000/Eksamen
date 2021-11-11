@@ -1,0 +1,46 @@
+.login{  
+    width: 400px;  
+    height: 400px;
+    overflow: hidden;  
+    margin: auto;  
+    padding: 80px;  
+    background: #2c9b22;  
+    border-radius: 50px ;  
+    margin: 75 10 10 450px;  
+}  
+h2{  
+text-align: center;  
+color: #15b8d4;  
+padding: 20px;  
+margin: 10 10 10 10px;  
+}  
+#loginKnap{
+    width: 200px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 17px;  
+    padding-left: 7px;  
+    margin: 10 0 0 100px;  
+
+    color: blue;  
+
+
+}
+#registerKnap {
+    width: 200px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 17px;  
+    padding-left: 7px;  
+    color: blue;  
+    margin: 10 0 0 100px; 
+}
+.box {
+    width: 200px;  
+    height: 30px;  
+    border: none;  
+    margin: 10 0 0 100px;  
+    color: blue;
+    padding-left: 7px; 
+    border-radius: 17px;
+}
