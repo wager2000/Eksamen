@@ -13,12 +13,16 @@ function login(){
     var password = document.getElementById("password").value
 
     for (i = 0; i<people.length;i++){
-        if (username = people[i].username && password == people[i].password){
+        if (username == people[i].username && password == people[i].password){
         
-            console.log(username + " is logged in!")
+            alert('Welcome back '+ username + ' You are now logged in!')
             return
+        } else {
+            alert("Wrong username or password")
+
         }
     }
+    
 console.log("incorrect username")
     }
 // Jeg laver en function som tager userinputtet fra det de skriver. Det gør jeg både for nyt userID og nyt password
@@ -40,6 +44,9 @@ else if (registerPassword.length < 8) {
     alert("that password is too short, it needs to contain at least 8 characters")
     return
 
+}
+else {
+    alert("User has been created")
 }
 
 }
