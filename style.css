@@ -34,6 +34,7 @@ margin: 10 10 10 10px;
     padding-left: 7px;  
     color: blue;  
     margin: 10 0 0 100px; 
+    
 }
 .box {
     width: 200px;  
@@ -43,4 +44,15 @@ margin: 10 10 10 10px;
     color: blue;
     padding-left: 7px; 
     border-radius: 17px;
+}
+#deleteKnap{
+    width: 60px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 17px;  
+    padding-left: 7px;  
+    color: blue; 
+    background-color: #f3072e; 
+    margin: 20 0 0 370px;
+
 }
