@@ -14,6 +14,7 @@ class DB {
   }
 
   // Open file
+  //ændrer filename til userfile
   openFile(fileName) {
     const file = fs.readFileSync(ABSOLUTE_PATH + fileName);
     return JSON.parse(file);

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const user = JSON.parse(localStorage.getItem("user"));
 
-    fetch("http://localhost:8000/users/delete", {
+    fetch("http://localhost:8200/users/delete", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
