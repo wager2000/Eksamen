@@ -1,61 +1,47 @@
 
-/*
-
-.login{  
-    width: 400px;  
-    height: 400px;
-    overflow: hidden;  
-    margin: auto;  
-    padding: 80px;  
-    background: #2c9b22;  
-    border-radius: 50px ;  
-    margin: 75 10 10 450px;  
-}  
-h2{  
-text-align: center;  
-color: #15b8d4;  
-padding: 20px;  
-margin: 10 10 10 10px;  
-}  
-#loginKnap{
-    width: 200px;  
-    height: 30px;  
-    border: none;  
-    border-radius: 17px;  
-    padding-left: 7px;  
-    margin: 10 0 0 100px;  
-
-    color: blue;  
-
-
-}
-#registerKnap {
-    width: 200px;  
-    height: 30px;  
-    border: none;  
-    border-radius: 17px;  
-    padding-left: 7px;  
-    color: blue;  
-    margin: 10 0 0 100px; 
+.collapsible{
+    background-color: blue;
     
-}
-.box {
-    width: 200px;  
-    height: 30px;  
-    border: none;  
-    margin: 10 0 0 100px;  
-    color: blue;
-    padding-left: 7px; 
-    border-radius: 17px;
-}
-#deleteKnap{
-    width: 60px;  
-    height: 30px;  
-    border: none;  
-    border-radius: 17px;  
-    padding-left: 7px;  
-    color: blue; 
-    background-color: #f3072e; 
-    margin: 20 0 0 370px;
-
-}
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    margin: 10px;
+    margin-bottom: 0px;
+  }
+  
+  .content{
+    padding-bottom: 8px;
+    padding: 8px;
+    /* padding-top: 0px; */
+    border-radius: 5px;
+    width: 242px;
+    background-color: burlywood;
+    color: darkorchid;
+    margin-left: 20px;
+    margin-top: 0px;
+    display: none;
+    overflow: hidden;
+    font-size: 12px;
+      /* max-height: 0; */
+    /* transition: max-height 0.2s ease-out; */
+  }
+  
+  .collapsible:hover {
+      background-color: lightskyblue;
+  }
+  
+  .active{
+      background-color: purple !important;
+  }
+  
+  
+  .title{
+      font-size: 32px;
+      color: crimson;
+  }

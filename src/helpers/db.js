@@ -1,5 +1,6 @@
 var fs = require("fs");
 
+
 const ABSOLUTE_PATH = __dirname + "/../../data";
 const USER_FILE = "/users.json";
 
@@ -34,6 +35,7 @@ class DB {
   findUser(user) {
     return this.users.find((x) => user.email == x.email);
   }
+
 }
 
 // Det her er en singleton -- laaangt over pensum, men et ret fedt term at fyre af

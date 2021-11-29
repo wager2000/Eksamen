@@ -6,10 +6,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
   
       const varer = document.getElementById("varer").value;
       const pris= document.getElementById("pris").value;
+      const billede = document.getElementById("billede").value
   
       const opretVare = {
         varer: varer,
         pris: pris,
+        billede: billede
       };
   
       fetch("http://localhost:8200/varer/createvarer", {
@@ -32,3 +34,35 @@ document.addEventListener("DOMContentLoaded", (event) => {
         });
     });
   });
+
+
+
+
+
+
+
+
+  document.getElementById("delete").addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const varerne = JSON.parse(localStorage.getItem("Goods"));
+
+    fetch("http://localhost:8200/varer/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(varerne),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response) {
+          localStorage.removeItem("Goods");
+          location.href = "/varer.html";
+        }
+      })
+      .catch(() => {
+        window.alert("Der skete en fejl");
+      });
+  });
+

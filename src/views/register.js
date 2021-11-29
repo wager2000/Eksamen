@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
       })
       .catch(() => {
-        window.alert("Der skete en fejl");
+        alert("Der skete en fejl");
       });
   });
 });

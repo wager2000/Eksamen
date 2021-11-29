@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const userModel = require("./../models/user");
+
 const db = require("./../helpers/db");
-const { users } = require("./../helpers/db");
+
+
+//nok ikke nødvendigt
+//const { users } = require("./../helpers/db");
 
 router.post("/create", (req, res) => {
   const user = new userModel(req.body.email, req.body.password);
@@ -10,10 +14,7 @@ router.post("/create", (req, res) => {
   res.status(200).send(true);
   
 });
-router.get("/", (req, res) => {
-  res.status(200).send(true);
-  console.log(users)
-});
+
   
 router.delete("/delete", (req, res) => {
   const user = new userModel(req.body.email, req.body.password);

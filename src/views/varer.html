@@ -1,13 +1,30 @@
 <html>
   <head>
-    <script type="module" src="varer.js"></script>
+    <title>JSON Test</title>
+    <script type="text/javascript" src="showData.js"></script>
+
+    
   </head>
   <body>
+
+    <script type="module" src="varer.js"></script>
+
+
+    <div id="data">
+
+    </div>
+</body>
     <h1>Varer</h1>
     <form id="form">
         <input placeholder="Varer" id="varer" />
         <input placeholder="pris" id="pris" />
+        <input type="file" id="billede" name="img" accept="image/*">
         <input value="Submit" type="submit" id= "submit" />
+           </form>
+    <form id="delete">
+      <input value="Delete" type="submit" />
     </form>
+
+      <button onclick="load()">Click me</button>    
   </body>
 </html>

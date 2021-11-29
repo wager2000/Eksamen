@@ -29,13 +29,11 @@ class VB {
       this.saveFile(VARER_FILE, JSON.stringify(this.salg));
     }
     deleteGoods(varer) {
-        this.salg = this.salg.filter((x) => x.varer != user.varer);
-        this.saveFile(USER_FILE, JSON.stringify(this.varer));
+        this.salg = this.salg.filter((x) => x.varer != varer.varer);
+        this.saveFile(USER_FILE, JSON.stringify(this.salg));
       }
     
-      findUser(user) {
-        return this.users.find((x) => user.email == x.email);
-      }
+     
 }
   // Det her er en singleton -- laaangt over pensum, men et ret fedt term at fyre af
   module.exports = new VB();
