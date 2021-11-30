@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         if (response) {
           // Gemme oplysninger
           localStorage.setItem("user", JSON.stringify(user));
-          location.href = "/";
+          location.href = "/varer.html";
         } else {
           window.alert("Oplysninger forkert");
         }

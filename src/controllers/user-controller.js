@@ -18,7 +18,7 @@ router.post("/create", (req, res) => {
   
 router.delete("/delete", (req, res) => {
   const user = new userModel(req.body.email, req.body.password);
-  db.deleteUser(user);
+  db.deleteUser(user);  
   res.status(200).send(true);
 });
 
@@ -35,5 +35,13 @@ router.post("/login", (req, res) => {
     res.status(404).send(false);
   }
 });
+
+router.get("/logout", (req,res)=>{
+ 
+  res.clearCookie()
+  req.session.destroy();
+  res.sendStatus(200);
+  }); 
+ 
 
 module.exports = router;

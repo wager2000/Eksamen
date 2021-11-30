@@ -1,7 +1,6 @@
 <html>
   <head>
     <title>JSON Test</title>
-    <script type="text/javascript" src="showData.js"></script>
 
     
   </head>
@@ -10,11 +9,10 @@
     <script type="module" src="varer.js"></script>
 
 
-    <div id="data">
 
-    </div>
+    
 </body>
-    <h1>Varer</h1>
+    <h1>Opret en vare</h1>
     <form id="form">
         <input placeholder="Varer" id="varer" />
         <input placeholder="pris" id="pris" />
@@ -22,9 +20,18 @@
         <input value="Submit" type="submit" id= "submit" />
            </form>
     <form id="delete">
-      <input value="Delete" type="submit" />
+      <input value="Slet vare" type="submit" />
     </form>
-
-      <button onclick="load()">Click me</button>    
+    <form id="visData">
+      <input value="vis varer" type="submit" />
+      <table id = "mytable">
+        
+      </table>
+      
+    </form>
+    
+    <form id = "logout" action="http://localhost:8200/index.html">
+      <input type="submit" value="Log ud"/>
+  </form>
   </body>
 </html>
