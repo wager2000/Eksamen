@@ -1,3 +1,5 @@
+
+
 class Goods {
     constructor(varer, pris, billede) {
       this.varer = varer;

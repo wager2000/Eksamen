@@ -1,6 +1,7 @@
 // Jeg laver en function som tager userinputtet fra det de skriver. Det gør jeg både for nyt userID og nyt password
 
 
+
 document.addEventListener("DOMContentLoaded", (event) => {
   document.getElementById("form").addEventListener("submit", (event) => {
     event.preventDefault();
@@ -36,67 +37,72 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 
-
-
-
-document.getElementById("delete").addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const varer = JSON.parse(localStorage.getItem("varer"));
-
-  fetch("http://localhost:8200/users/delete", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(varer),
-  })
-    .then((response) => response.json())
-    .then((response) => {
-      if (response) {
-        localStorage.removeItem("varer");
-        location.href = "/varer.html";
-      }
-    })
-    .catch(() => {
-      window.alert("Der skete en fejl");
-    });
-});
-
-function readTextFile(file, callback) {
-  var rawFile = new XMLHttpRequest();
-  rawFile.overrideMimeType("application/json");
-  rawFile.open("GET", file, true);
-  rawFile.onreadystatechange = function() {
-      if (rawFile.readyState === 4 && rawFile.status == "200") {
-          callback(rawFile.responseText);
-      }
-  }
-  rawFile.send(null);
+async function getGoods() {
+  const result = await fetch("http://localhost:8200/varer/getproducts")
+  const goods = await result.json()
+  return goods
 }
 
-//usage:
-readTextFile("/Users/Documents/workspace/test.json", function(text){
-  var data = JSON.parse(text);
-  console.log(data);
+function renderTable(goods) {
+    const table = document.getElementById('varerTable');
+    let tableHtml = `
+      <tr>
+        <th>varer</th>
+        <th>pris</th>
+        <th>billede</th>
+      </tr>`;
+    for (const row of goods){
+      tableHtml += `
+        <tr>
+          <td>${row.varer}</td>
+          <td>${row.pris}</td>
+          <td><img src="${row.billede}" style="height:50px;width:50px;"</td>
+        </tr>
+      `;
+    }
+    table.innerHTML = tableHtml;
+}
+
+async function handleClick() {
+  try {
+    const goods = await getGoods()
+    renderTable(goods)
+  } catch(err) {
+    console.log('Oh no 😨')
+    console.error(err)
+  }  
+} 
+
+document.getElementById("clickMe").addEventListener('click', handleClick);
+
+/*
+document.getElementById("clickMe").addEventListener('click', async() => {
+  let table = document.getElementById('varerTable');
+  
+  let result = await fetch("http://localhost:8200/varer/getproductsforenkategori/:varer", {method: 'GET', headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
 })
+  .then(res => res.json())
+  .catch(console.log("error"));
 
-console.log("hej")
+  let tableHtml = `<tr>
+  <th>varer</th>
+  <th>pris</th>
+  <th>billede</th>
+  </tr>
+  `;
+  for(const varer in result){
+    tableHtml += `
+    <tr>
+    <td>${varer.varer}</td>
+    <td>${varer.pris}</td>
+    <td><img src="${varer.billede}" style="height:50px;width:50px;"</td>
+    </tr>
+    `;
 
-
-document.getElementById("visData").addEventListener("submit", async (event) => {
-  event.preventDefault();
- fetch("http://localhost:8200/varer/getproducts");
-
- var k = '<tbody>'
- for (var i = 0; i < myArr.length; i++) {
-   k += '<tr>';
-   k += '<td>' + myArr[i].varer + '</td>';
-   k += '<td>' + myArr[i].pris + '</td>';
-   k += '<td>' + myArr[i].billede + '</td>';
-   k += '</tr>';
- }
- k += '</tbody>';
- document.getElementById('mytable').innerHTML = k;
-
+  }
+  table.innerHTML = tableHtml;
 });
+*/

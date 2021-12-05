@@ -1,6 +1,3 @@
-
-
-// Jeg laver en function som tager userinputtet fra det de skriver. Det gør jeg både for nyt userID og nyt password
 document.addEventListener("DOMContentLoaded", (event) => {
   document.getElementById("form").addEventListener("submit", (event) => {
     event.preventDefault();

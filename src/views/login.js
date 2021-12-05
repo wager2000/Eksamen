@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", (event) => {
   const user = localStorage.getItem("user");
   if (user) {
-    location.href = "/";
+    location.href = "/varer.html";
   }
 
   document.getElementById("form").addEventListener("submit", (event) => {

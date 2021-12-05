@@ -1,13 +1,14 @@
+
+//Jeg starter en server som skal lytte på på PORT 8200
 const express = require("express");
 const app = express();
+const PORT = process.env.PORT || 8200;
 
 const userController = require("./src/controllers/user-controller");
 const varerController = require("./src/controllers/varer-controller");
 
-
-const PORT = process.env.PORT || 8200;
-
-app.use(express.static("./src/views"))
+app.use(express.static("./src/views")) 
+app.use('/',express.static('public'))
 
 
 //Gør så den kommer som en string, ved hjælp af at sende den som et json objekt
