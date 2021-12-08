@@ -8,11 +8,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const varer = document.getElementById("varer").value;
     const pris = document.getElementById("pris").value;
+    const vareKategori = document.getElementById("vareKategori").value;
     const billede = document.getElementById("billede").value
 
     const opretVare = {
       varer: varer,
       pris: pris,
+      vareKategori: vareKategori,
       billede: billede
     };
 
@@ -37,72 +39,69 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 
+
 async function getGoods() {
-  const result = await fetch("http://localhost:8200/varer/getproducts")
-  const goods = await result.json()
-  return goods
+  const response = await fetch("http://localhost:8200/varer/getproducts")
+  const result = await response.json()
+  return result
+}
+
+async function deleteGoods(id) {
+  const response = await fetch("http://localhost:8200/varer/getproducts/" + id, { 
+    method: 'DELETE'
+  })
+  const result = await response.json()
+  return result
 }
 
 function renderTable(goods) {
     const table = document.getElementById('varerTable');
     let tableHtml = `
       <tr>
-        <th>varer</th>
-        <th>pris</th>
-        <th>billede</th>
+      <th>
+      <label Varekategori:</label>
+      <select name="kategori" id="varer">
+          <option value="mad">Mad</option>
+          <option value="drikkelse">Drikkelse</option>
+      </select>
+      </th>
+      
+      <th>Vare</th>     
+       <th>Pris</th>
+        <th>Billede</th>
       </tr>`;
     for (const row of goods){
       tableHtml += `
         <tr>
+          <td>${row.vareKategori}</td>
           <td>${row.varer}</td>
           <td>${row.pris}</td>
-          <td><img src="${row.billede}" style="height:50px;width:50px;"</td>
+          <td><img src="${row.billede}" style="height:100px;width000px;"</td>
+          <td><button onclick = "handleDelete(${row.id})"> Delete </button></td>
+          <td><button onclick ="updateVare"> update </button></td>
         </tr>
       `;
     }
     table.innerHTML = tableHtml;
 }
 
-async function handleClick() {
+async function handleDelete(id) {
+  try {
+    await deleteGoods(id)
+    const goods = await getGoods()
+    renderTable(goods)
+  } catch(err) {
+    console.error(err)
+  }  
+}
+
+async function handleLoad() {
   try {
     const goods = await getGoods()
     renderTable(goods)
   } catch(err) {
-    console.log('Oh no 😨')
     console.error(err)
   }  
 } 
+document.getElementById("clickMe").addEventListener('click', handleLoad);
 
-document.getElementById("clickMe").addEventListener('click', handleClick);
-
-/*
-document.getElementById("clickMe").addEventListener('click', async() => {
-  let table = document.getElementById('varerTable');
-  
-  let result = await fetch("http://localhost:8200/varer/getproductsforenkategori/:varer", {method: 'GET', headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  },
-})
-  .then(res => res.json())
-  .catch(console.log("error"));
-
-  let tableHtml = `<tr>
-  <th>varer</th>
-  <th>pris</th>
-  <th>billede</th>
-  </tr>
-  `;
-  for(const varer in result){
-    tableHtml += `
-    <tr>
-    <td>${varer.varer}</td>
-    <td>${varer.pris}</td>
-    <td><img src="${varer.billede}" style="height:50px;width:50px;"</td>
-    </tr>
-    `;
-
-  }
-  table.innerHTML = tableHtml;
-});
-*/

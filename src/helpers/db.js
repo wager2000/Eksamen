@@ -6,7 +6,7 @@ const USER_FILE = "/users.json";
 
 class DB {
   constructor() {
-    this.users = this.openFile(USER_FILE);
+    this.bruger= this.openFile(USER_FILE);
   }
   /* CORE */
   // Save file
@@ -23,17 +23,17 @@ class DB {
 
   /* LOGIN DB */
   saveUser(user) {
-    this.users.push(user);
-    this.saveFile(USER_FILE, JSON.stringify(this.users));
+    this.bruger.push(user);
+    this.saveFile(USER_FILE, JSON.stringify(this.bruger));
   }
 
   deleteUser(user) {
-    this.users = this.users.filter((x) => x.email != user.email);
-    this.saveFile(USER_FILE, JSON.stringify(this.users));
+    this.bruger = this.bruger.filter((x) => x.email != user.email);
+    this.saveFile(USER_FILE, JSON.stringify(this.bruger));
   }
 
   findUser(user) {
-    return this.users.find((x) => user.email == x.email);
+    return this.bruger.find((x) => user.email == x.email);
   }
 
 }

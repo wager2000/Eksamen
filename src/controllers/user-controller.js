@@ -46,10 +46,23 @@ router.post("/login", (req, res) => {
   }
 });
 //HHTP request post,
-router.post('/logout', (req, res) => {
-  fs.writeFile('data/varer.json',JSON.stringify(users), err =>{
-  res.clearCookie('users');
-  return location = "/login"
+
+
+
+
+router.put("/update", (req, res) => {
+  const user = new userModel(req.body.email, req.body.password);
+  const newuser = new userModel(req.body.newemail, req.body.newpassword);
+
+  db.deleteUser(user);  
+  db.saveUser(newuser);
+  res.status(200).send(true);
+  
 });
+
+router.delete('/logout', (req, res) => {
+  res.status(200).send(true);
+
 });
+
 module.exports = router;

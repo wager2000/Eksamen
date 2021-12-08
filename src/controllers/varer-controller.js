@@ -11,7 +11,7 @@ module.exports = router;
 
 
 router.post("/createvarer", (req, res) => {
-    const Goods = new varerModel(req.body.varer, req.body.pris, req.body.billede);
+    const Goods = new varerModel(req.body.varer, req.body.vareKategori, req.body.billede);
         vb.saveGoods(Goods)
         res.status(200).send(true);
       
@@ -19,10 +19,15 @@ router.post("/createvarer", (req, res) => {
 
   
 
-   router.post("/delete", (req, res) => {
-    const varer = new varerModel(req.body.varer, req.body.pris, req.body.billede);
+   router.delete("/delete", (req, res) => {
+    const varer = new varerModel(req.body.varer, req.body.pris, req.body.vareKategori, req.body.billede);
     vb.deleteGoods(varer);
     res.status(200).send(true);
+  });
+
+  router.delete("/delete:id", (req, res) => {
+    res.status(200).send(true);
+    vb.deleteGoods(varer)
   });
 
 

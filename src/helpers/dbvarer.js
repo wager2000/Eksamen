@@ -27,8 +27,8 @@ class VB {
       this.salg.push(varer);
       this.saveFile(VARER_FILE, JSON.stringify(this.salg));
     }
-    deleteGoods(varerne) {
-        this.salg = this.salg.filter((x) => x.varer != varerne.varer);
+    deleteGoods(varer) {
+        this.salg = this.salg.filter((x) => x.varer != varer.varer);
         this.saveFile(VARER_FILE, JSON.stringify(this.salg));
       }
     
