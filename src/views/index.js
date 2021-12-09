@@ -1,3 +1,4 @@
+//hvis der ikke er en user skal den bare gå til login siden
 document.addEventListener("DOMContentLoaded", (event) => {
   const user = localStorage.getItem("user");
   if (!user) {
@@ -14,7 +15,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         "Content-Type": "application/json",
       },// Laver det til Json
       body: JSON.stringify(user),
-    })//skal fjerne user fra localstorage og fører den til
+    })//skal fjerne user fra localstorage og fører dem til login side. dette sker ved et promise 
+    //hvis der er svar skal den lave det til json
       .then((response) => response.json())
       .then((response) => {
         if (response) {
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           location.href = "/login.html";
         }
       })
+      //hvis der er fejl skal den bruge catch
       .catch(() => {
         window.alert("Der skete en fejl");
       });
@@ -37,16 +40,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-      },// Laver det til Json
-    })//skal fjerne user fra localstorage og fører den til
-      .then((response) => response.json())
+      },
+    })//skal fjerne user fra localstorage og fører den til login
       .then((response) => {
         if (response) {
-          console.log("jh")
           localStorage.removeItem("user");
           location.href = "/login.html";
         }
       })
+      //catch hvis der kommer en fejl hvorefter der kommer en alert
       .catch(() => {
         window.alert("Der skete en fejl");
       });

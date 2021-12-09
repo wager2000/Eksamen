@@ -26,7 +26,11 @@ router.post("/create", (req, res) => {
   //Her bruger jeg HHTP request /delete
 router.delete("/delete", (req, res) => {
   const user = new userModel(req.body.email, req.body.password);
-  db.deleteUser(user);  
+  const newuser = new userModel(req.body.newemail, req.body.newpassword);
+
+  db.deleteUser(user); 
+  db.deleteUser(newuser);  
+ 
   res.status(200).send(true);
 });
 //bruger HHTP request post igen, og min findUser funktion for at se om useren er i users.json filen
@@ -45,24 +49,24 @@ router.post("/login", (req, res) => {
     res.status(404).send(false);
   }
 });
-//HHTP request post,
 
 
 
-
+//der bliver sendt et put request ved endpointet /update. 
+//definerer user og newuser som er den nye account
 router.put("/update", (req, res) => {
   const user = new userModel(req.body.email, req.body.password);
   const newuser = new userModel(req.body.newemail, req.body.newpassword);
-
+//slette den gamle user og gemmer den nye
   db.deleteUser(user);  
   db.saveUser(newuser);
   res.status(200).send(true);
   
 });
-
+//laver et delete request med endpointet /logout
 router.delete('/logout', (req, res) => {
   res.status(200).send(true);
 
 });
-
+//exporter modulet så det kan blive brugt i de andre programmer ved hjælp af import
 module.exports = router;
