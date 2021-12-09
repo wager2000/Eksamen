@@ -33,5 +33,23 @@ describe('Post /Login', () => {
       })
     })
 })
+      describe('Post /Login', () => {
+        it('should give error 404', (done)=>{
+            //sætter user til den user vi er logget ind på localhost med
+            const user = {email:"prøve",password:"prøve"}
+    
+          chai
+          .request("http://localhost:8200/users")
+          //tester post request med endpointet /login
+          .post('/login')
+          //sender useren 
+          .send(user)
+          .end((err,res)=>{
+              //satuskoden skal være 404
+            expect(res.status).to.equal(404);
+            done();
+    })
 })
-
+      })
+    })
+    

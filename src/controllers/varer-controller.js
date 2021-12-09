@@ -35,7 +35,7 @@ router.post("/createvarer", (req, res) => {
    })
 
 //vis varer for en kategori.  
-router.get("/getproductsforenkategori/:varer", (req, res)=>{
+router.get("/getproductsforenkategori/:vareKategori", (req, res)=>{
 let category = req.params.varer;
 if(products[category]){
   res.status(200).json({[category]:products[category]});
